@@ -3,8 +3,8 @@ import LeaderboardNav from "../_components/LeaderboardNav";
 
 export default function ClashGG() {
     return (
-        <section className="w-full h-screen text-white">
-            <div className="w-full h-screen flex flex-col py-10 items-center">
+        <section className="w-full pb-20 text-white">
+            <div className="w-full flex flex-col py-10 items-center">
                 <LeaderboardNav />
                 <div className="space-y-1 flex flex-col items-center mt-10 relative">
                     <div className="absolute w-full h-full bg-blue-200 -z-10 rounded-full blur-2xl opacity-30"></div>
@@ -21,7 +21,7 @@ export default function ClashGG() {
                                 <div className="w-full h-[85%] group-hover:h-[83%] transition-all duration-500 ease-initial">
 
                                 </div>
-                                <div className="w-full rounded-b-lg flex justify-center items-center h-[15%] group-hover:h-[17%] bg-border group-hover:bg-secondary/60 transition-all duration-500 ease-initial">
+                                <div className="w-full rounded-b-lg flex justify-center items-center h-[15%] group-hover:h-[17%] bg-border group-hover:bg-secondary/80 transition-all duration-500 ease-initial">
                                     <h1 className="font-bold text-lg tracking-wide text-primary transition-all duration-500 ease-initial group-hover:text-white">$800</h1>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@ export default function ClashGG() {
                                 <div className="w-full h-[85%] group-hover:h-[83%] transition-all duration-500 ease-initial">
 
                                 </div>
-                                <div className="w-full rounded-b-lg flex justify-center items-center h-[15%] group-hover:h-[17%] bg-border group-hover:bg-secondary/60 transition-all duration-500 ease-initial">
+                                <div className="w-full rounded-b-lg flex justify-center items-center h-[15%] group-hover:h-[17%] bg-border group-hover:bg-secondary/80 transition-all duration-500 ease-initial">
                                     <h1 className="font-bold text-lg tracking-wide text-primary transition-all duration-500 ease-initial group-hover:text-white">$1000</h1>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@ export default function ClashGG() {
                                 <div className="w-full h-[85%] group-hover:h-[83%] transition-all duration-500 ease-initial">
 
                                 </div>
-                                <div className="w-full rounded-b-lg flex justify-center items-center h-[15%] group-hover:h-[17%] bg-border group-hover:bg-secondary/60 transition-all duration-500 ease-initial">
+                                <div className="w-full rounded-b-lg flex justify-center items-center h-[15%] group-hover:h-[17%] bg-border group-hover:bg-secondary/80 transition-all duration-500 ease-initial">
                                     <h1 className="font-bold text-lg tracking-wide text-primary transition-all duration-500 ease-initial group-hover:text-white">$500</h1>
                                 </div>
                             </div>
