@@ -20,7 +20,7 @@ const LeaderboardRow = ({ entry, index }: LeaderboardRowProps) => {
     };
 
     return (
-        <div className="px-6 py-4 hover:bg-gradient-to-r from from-blue-600/5 to-blue-900/5 transition-colors duration-200 group">
+        <div className="px-6 py-4 hover:bg-gradient-to-r from from-red-600/5 to-red-900/5 transition-colors duration-200 group">
             <div className="grid grid-cols-4 gap-4 items-center">
                 {/* Place */}
                 <div className="text-2xl font-bold text-secondary">

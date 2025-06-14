@@ -43,7 +43,7 @@ export default function ClashGG() {
 
 
     return (
-        <section className="w-full pb-20 text-white">
+        <section className="w-full clashGG pb-20 text-white">
             <div className="w-full flex flex-col py-10 items-center">
                 <LeaderboardNav />
                 <div className="flex justify-center mt-12 items-center w-full">
@@ -60,7 +60,7 @@ export default function ClashGG() {
                         <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
                     </div> :
                         <div className="w-full flex justify-center gap-20 perspective">
-                            <SpotlightCard className="translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card relative rotate-3d-left hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
+                            <SpotlightCard className="translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#13300b] to-card relative rotate-3d-left hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                     #2
                                 </div>
@@ -88,7 +88,7 @@ export default function ClashGG() {
                             </SpotlightCard>
                             <div className="relative">
                                 <div className="absolute w-full h-full bg-secondary/30 -z-10 rounded-xl blur-3xl" />
-                                <SpotlightCard className="relative border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card hover:scale-105 transition-all duration-500 group ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
+                                <SpotlightCard className="relative border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#13300b] to-card hover:scale-105 transition-all duration-500 group ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
                                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                         #1
                                     </div>
@@ -115,7 +115,7 @@ export default function ClashGG() {
                                     </div>
                                 </SpotlightCard>
                             </div>
-                            <SpotlightCard className="translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card relative rotate-3d-right hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
+                            <SpotlightCard className="translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#13300b] to-card relative rotate-3d-right hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                     #3
                                 </div>
@@ -152,7 +152,7 @@ export default function ClashGG() {
                     {timerLoading ? <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span> : <CountdownTimer resetTime={timer} />}
                 </div>
                 <div className="w-full h-screen py-32">
-                    <div className="bg-gradient-to-br from-card via-[#0b1730] to-card w-2/3 mx-auto backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden shadow-2xl">
+                    <div className="bg-gradient-to-br from-card via-[#13300b] to-card w-2/3 mx-auto backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden shadow-2xl">
                         <div className="bg-border px-6 py-4">
                             <div className="grid grid-cols-4 gap-4 text-sm font-semibold text-white uppercase tracking-wider">
                                 <div>Place</div>

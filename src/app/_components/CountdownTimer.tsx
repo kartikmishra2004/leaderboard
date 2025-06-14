@@ -1,4 +1,6 @@
+'use client'
 import React, { useEffect, useState } from "react";
+import { usePathname } from 'next/navigation';
 
 interface TimeLeft {
     days: number;
@@ -8,6 +10,7 @@ interface TimeLeft {
 }
 
 const CountdownTimer: React.FC<{ resetTime: string }> = ({ resetTime }) => {
+    const pathname = usePathname();
     const parseTimeString = (timeString: string): number => {
         // Handle different possible formats
         if (!timeString) return 0;
@@ -100,7 +103,7 @@ const CountdownTimer: React.FC<{ resetTime: string }> = ({ resetTime }) => {
     console.log("Received resetTime:", resetTime, typeof resetTime);
 
     return (
-        <div className="flex relative bg-gradient-to-br from-card via-[#0b1730] border-2 border-border to-card text-white p-8 rounded-xl space-x-6 text-center font-mono text-4xl">
+        <div className={`flex relative bg-gradient-to-br from-card ${pathname === '/raingg' ? '#0b1730' : 'via-[#13300b]'} border-2 border-border to-card text-white p-8 rounded-xl space-x-6 text-center font-mono text-4xl`}>
             <div className="absolute w-full h-full bg-secondary/30 -z-10 rounded-xl blur-3xl" />
             <div>
                 <div>{formatTime(timeLeft.days)}</div>
