@@ -87,7 +87,7 @@ export default function RainGG() {
                                 </div>
                             </SpotlightCard>
                             <div className="relative">
-                                <div className="absolute w-full h-full bg-secondary/30 -z-10 rounded-xl blur-3xl" />
+                                <div className="absolute w-full h-full bg-secondary/20 -z-10 rounded-xl blur-3xl" />
                                 <SpotlightCard className="relative border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card hover:scale-105 transition-all duration-500 group ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
                                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                         #1

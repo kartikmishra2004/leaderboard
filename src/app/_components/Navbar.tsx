@@ -13,7 +13,7 @@ export default function Navbar() {
     if (pathname === '/raingg') {
         bgClass = 'bg-gradient-to-r from-card via-[#0b1730] to-card';
     } else if (pathname === '/clashgg') {
-        bgClass = 'bg-gradient-to-r from-card via-[#13300b] to-card clashGG';
+        bgClass = 'bg-gradient-to-r from-card via-[#0a1c05] to-card clashGG';
     }
 
     return (

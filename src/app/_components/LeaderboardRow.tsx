@@ -1,4 +1,5 @@
 import { Trophy } from "lucide-react";
+import { usePathname } from 'next/navigation';
 
 interface LeaderboardEntry {
     username: string;
@@ -18,9 +19,10 @@ const LeaderboardRow = ({ entry, index }: LeaderboardRowProps) => {
             minimumFractionDigits: 2,
         }).format(amount);
     };
+    const pathname = usePathname();
 
     return (
-        <div className="px-6 py-4 hover:bg-gradient-to-r from from-red-600/5 to-red-900/5 transition-colors duration-200 group">
+        <div className={`px-6 py-4 hover:bg-gradient-to-r from ${pathname === '/clashgg' ? "from-green-600/5 to-green-900/5" : "from-blue-600/5 to-blue-900/5" } from-green-600/5 to-green-900/5 transition-colors duration-200 group`}>
             <div className="grid grid-cols-4 gap-4 items-center">
                 {/* Place */}
                 <div className="text-2xl font-bold text-secondary">
