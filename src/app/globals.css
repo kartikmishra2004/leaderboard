@@ -55,12 +55,14 @@
   /* Custom colors */
 
   --radius: 0.625rem;
+
+  overflow-x: hidden;
 }
 
 .clashGG {
 
   /* Custom colors */
-  --primary: #dcfedb;
+  --primary: #eeffee;
   --secondary: oklch(90.815% 0.17434 145.689);
   --background: #031205;
   --card: #031004;
@@ -95,4 +97,17 @@
 
 .perspective {
   perspective: 700px;
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: floatUpDown 3s ease-in-out infinite;
 }

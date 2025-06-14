@@ -4,6 +4,7 @@ import LeaderboardNav from "../_components/LeaderboardNav";
 import { useEffect, useState } from "react";
 import LeaderboardRow from "../_components/LeaderboardRow";
 import CountdownTimer from "../_components/CountdownTimer";
+import Image from "next/image";
 
 type LeaderboardEntry = {
     username: string;
@@ -55,11 +56,15 @@ export default function RainGG() {
                     </div>
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                 </div>
-                <div className="p-10 w-full flex justify-center items-center h-[400px] mt-20">
+                <div className="p-10 w-full relative flex justify-center items-center h-[400px] mt-20">
+                    <Image className="absolute -left-20 top-35 hue-rotate-200 blur-3xl opacity-40 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                    <Image className="absolute -left-20 top-35 hue-rotate-200 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                    <Image className="absolute -right-20 top-35 hue-rotate-200 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                    <Image className="absolute -right-20 top-35 hue-rotate-200 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
                     {loading ? <div className="w-full h-screen flex justify-center items-center">
                         <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
                     </div> :
-                        <div className="w-full flex justify-center gap-20 perspective">
+                        <div className="w-full flex justify-center gap-14 perspective">
                             <SpotlightCard className="translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card relative rotate-3d-left hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                     #2

@@ -4,6 +4,7 @@ import LeaderboardNav from "../_components/LeaderboardNav";
 import { useEffect, useState } from "react";
 import LeaderboardRow from "../_components/LeaderboardRow";
 import CountdownTimer from "../_components/CountdownTimer";
+import Image from "next/image";
 
 type LeaderboardEntry = {
     username: string;
@@ -55,7 +56,11 @@ export default function ClashGG() {
                     </div>
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                 </div>
-                <div className="p-10 w-full flex justify-center items-center h-[400px] mt-20">
+                <div className="p-10 w-full flex justify-center items-center h-[400px] relative mt-20">
+                    <Image className="absolute -left-20 top-35 hue-rotate-100 blur-3xl opacity-40 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                    <Image className="absolute -left-20 top-35 hue-rotate-100 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                    <Image className="absolute -right-20 top-35 hue-rotate-100 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                    <Image className="absolute -right-20 top-35 hue-rotate-100 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
                     {loading ? <div className="w-full h-screen flex justify-center items-center">
                         <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
                     </div> :
