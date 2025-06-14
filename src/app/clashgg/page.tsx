@@ -60,7 +60,7 @@ export default function ClashGG() {
                         <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
                     </div> :
                         <div className="w-full flex justify-center gap-20 perspective">
-                            <SpotlightCard className="translate-y-12 relative rotate-3d-left hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
+                            <SpotlightCard className="translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card relative rotate-3d-left hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                     #2
                                 </div>
@@ -86,33 +86,36 @@ export default function ClashGG() {
                                     </div>
                                 </div>
                             </SpotlightCard>
-                            <SpotlightCard className="relative hover:scale-105 transition-all duration-500 group ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
-                                    #1
-                                </div>
-                                <div className="w-[300px] h-[400px]">
-                                    <div className="w-full h-[85%] p-10 flex gap-4 flex-col justify-center items-center group-hover:h-[83%] transition-all duration-500 ease-initial">
-                                        <span className="w-25 flex text-2xl justify-center items-center h-25 bg-border border-2 border-secondary/20 group-hover:border-secondary transition-all duration-500 ease-initial rounded-full">
-                                            {leaderboard[0]?.username.slice(0, 2)}
-                                        </span>
-                                        <h1 className="text-2xl font-bold text-primary">{leaderboard[0]?.username}</h1>
-                                        <div className="flex flex-col items-center gap-1">
-                                            <h1 className="text-2xl font-bold text-secondary">
-                                                ${Number(leaderboard[0]?.wagered).toLocaleString("en-US", {
-                                                    minimumFractionDigits: 2,
-                                                    maximumFractionDigits: 2,
-                                                }).split('.')[0]}
-                                                <span className="text-sm">.{leaderboard[0]?.wagered.toFixed(2).split('.')[1]}</span>
-                                            </h1>
-                                            <h1 className="text-xs text-zinc-400 tracking-wide italic">WAGERED</h1>
+                            <div className="relative">
+                                <div className="absolute w-full h-full bg-secondary/30 -z-10 rounded-xl blur-3xl" />
+                                <SpotlightCard className="relative border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card hover:scale-105 transition-all duration-500 group ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
+                                        #1
+                                    </div>
+                                    <div className="w-[300px] h-[400px]">
+                                        <div className="w-full h-[85%] p-10 flex gap-4 flex-col justify-center items-center group-hover:h-[83%] transition-all duration-500 ease-initial">
+                                            <span className="w-25 flex text-2xl justify-center items-center h-25 bg-border border-2 border-secondary/20 group-hover:border-secondary transition-all duration-500 ease-initial rounded-full">
+                                                {leaderboard[0]?.username.slice(0, 2)}
+                                            </span>
+                                            <h1 className="text-2xl font-bold text-primary">{leaderboard[0]?.username}</h1>
+                                            <div className="flex flex-col items-center gap-1">
+                                                <h1 className="text-2xl font-bold text-secondary">
+                                                    ${Number(leaderboard[0]?.wagered).toLocaleString("en-US", {
+                                                        minimumFractionDigits: 2,
+                                                        maximumFractionDigits: 2,
+                                                    }).split('.')[0]}
+                                                    <span className="text-sm">.{leaderboard[0]?.wagered.toFixed(2).split('.')[1]}</span>
+                                                </h1>
+                                                <h1 className="text-xs text-zinc-400 tracking-wide italic">WAGERED</h1>
+                                            </div>
+                                        </div>
+                                        <div className="w-full rounded-b-lg flex justify-center items-center h-[15%] group-hover:h-[17%] bg-border group-hover:bg-secondary/80 transition-all duration-500 ease-initial">
+                                            <h1 className="font-bold text-xl tracking-wide text-primary transition-all duration-500 ease-initial group-hover:text-white">$1000</h1>
                                         </div>
                                     </div>
-                                    <div className="w-full rounded-b-lg flex justify-center items-center h-[15%] group-hover:h-[17%] bg-border group-hover:bg-secondary/80 transition-all duration-500 ease-initial">
-                                        <h1 className="font-bold text-xl tracking-wide text-primary transition-all duration-500 ease-initial group-hover:text-white">$1000</h1>
-                                    </div>
-                                </div>
-                            </SpotlightCard>
-                            <SpotlightCard className="translate-y-12 relative rotate-3d-right hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
+                                </SpotlightCard>
+                            </div>
+                            <SpotlightCard className="translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card relative rotate-3d-right hover:scale-105 group transition-all duration-500 ease-initial" spotlightColor="rgba(22, 36, 86, 0.4)">
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                     #3
                                 </div>
