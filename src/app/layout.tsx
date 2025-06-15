@@ -6,6 +6,7 @@ import Navbar from "./_components/Navbar";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LennisWrapper from "@/utils/LennisWrapper";
+import Footer from "./_components/Footer";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           </div>
           <Navbar />
           {children}
+          <Footer />
         </LennisWrapper>
       </body>
     </html>

@@ -1,5 +1,6 @@
 'use client';
 import { SocialIcon } from 'react-social-icons/component';
+import { SiDiscord, SiKick, SiTwitch, SiYoutube } from "react-icons/si";
 import 'react-social-icons/discord';
 import 'react-social-icons/twitch';
 import 'react-social-icons/instagram';
@@ -9,6 +10,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from 'react';
 import Link from 'next/link';
+import { SOCIAL_URLS } from '@/utils/social';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -37,10 +39,27 @@ export default function Navbar() {
                 <Link href={'/'}>
                     <h1 className="text-xl flex justify-center items-center gap-2 text-primary font-bold"><span><Image src={'/logo.webp'} className='rounded-full border-2 mt-0.5 border-border' alt='logo' width={40} height={40}></Image></span>SpyderWebs</h1>
                 </Link>
-                <div className="space-x-4">
-                    <SocialIcon bgColor={pathname === '/raingg' || pathname === '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.discord.com" />
-                    <SocialIcon bgColor={pathname === '/raingg' || pathname === '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.twitch.com" />
-                    <SocialIcon bgColor={pathname === '/raingg' || pathname === '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.instagram.com" />
+                <div className="space-x-4 flex">
+                    <Link className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.discord}>
+                        <div className="flex items-center bg-border p-2.5 rounded-full text-white hover:text-secondary transition-colors">
+                            <SiDiscord />
+                        </div>
+                    </Link>
+                    <Link className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.twitch}>
+                        <div className="flex items-center bg-border p-2.5 rounded-full text-white hover:text-secondary transition-colors">
+                            <SiTwitch />
+                        </div>
+                    </Link>
+                    <Link className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.kick}>
+                        <div className="flex items-center bg-border p-2.5 rounded-full text-white hover:text-secondary transition-colors">
+                            <SiKick />
+                        </div>
+                    </Link>
+                    <Link className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.youtube}>
+                        <div className="flex items-center bg-border p-2.5 rounded-full text-white hover:text-secondary transition-colors">
+                            <SiYoutube />
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -87,22 +87,30 @@
   box-shadow: 0 0 50px var(--glow);
 }
 
-.rotate-3d-right {
-  transform: rotateY(-20deg);
+@layer utilities {
+  .perspective {
+    perspective: 1200px;
+  }
+
+  .rotate-3d-left {
+    transform: rotateY(-27deg) translateY(3rem) translateZ(20px);
+    transform-style: preserve-3d;
+  }
+
+  .rotate-3d-right {
+    transform: rotateY(27deg) translateY(3rem) translateZ(20px);
+    transform-style: preserve-3d;
+  }
 }
 
-.rotate-3d-left {
-  transform: rotateY(20deg);
-}
-
-.perspective {
-  perspective: 700px;
-}
 
 @keyframes floatUpDown {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
