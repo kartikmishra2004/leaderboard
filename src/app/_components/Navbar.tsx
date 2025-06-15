@@ -38,9 +38,9 @@ export default function Navbar() {
                     <h1 className="text-xl flex justify-center items-center gap-2 text-primary font-bold"><span><Image src={'/logo.webp'} className='rounded-full border-2 mt-0.5 border-border' alt='logo' width={40} height={40}></Image></span>SpyderWebs</h1>
                 </Link>
                 <div className="space-x-4">
-                    <SocialIcon bgColor={pathname === '/raingg' || '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.discord.com" />
-                    <SocialIcon bgColor={pathname === '/raingg' || '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.twitch.com" />
-                    <SocialIcon bgColor={pathname === '/raingg' || '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.instagram.com" />
+                    <SocialIcon bgColor={pathname === '/raingg' || pathname === '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.discord.com" />
+                    <SocialIcon bgColor={pathname === '/raingg' || pathname === '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.twitch.com" />
+                    <SocialIcon bgColor={pathname === '/raingg' || pathname === '/raingg-prev' ? "#2c3955" : '#2c5530'} style={{ height: '35px', width: '35px' }} url="https://www.instagram.com" />
                 </div>
             </div>
         </div>
