@@ -79,7 +79,15 @@ export default function RainGG() {
     })
 
     return (
-        <section ref={mainRef} className="w-full pb-20 text-white">
+        <section ref={mainRef} className="w-full pb-20 text-white relative">
+            <div className="">
+                <Image className="absolute -left-20 top-0 -z-10 hue-rotate-200 blur-3xl opacity-40 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                <Image ref={leftChip} className="absolute -left-20 -top-20 -z-10 hue-rotate-200 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+            </div>
+            <div className="">
+                <Image className="absolute -right-20 top-0 -z-10 hue-rotate-200 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                <Image ref={rightChip} className="absolute -right-20 -top-20 -z-10 hue-rotate-200 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+            </div>
             <div className="w-full flex flex-col py-10 items-center">
                 <LeaderboardNav />
                 <div className="flex justify-center mt-12 items-center w-full">
