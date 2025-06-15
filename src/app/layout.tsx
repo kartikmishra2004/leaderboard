@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "./_components/Navbar";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import LennisWrapper from "@/utils/LennisWrapper";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
@@ -28,21 +29,24 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="">
-        <div className={`w-full h-screen fixed ${bgColorClass} -z-10 transition-colors duration-500`}>
-          <div className={`absolute top-0 left-1/2 max-w-[100vw] transform -translate-x-1/2 -translate-y-4/5 w-[2000px] h-[1500px] rounded-full blur-3xl bg-gradient-to-b ${gradient} to-transparent opacity-50`} />
-          <Particles
-            particleColors={['#ffffff', '#ffffff']}
-            particleCount={400}
-            particleSpread={30}
-            speed={0.04}
-            particleBaseSize={100}
-            moveParticlesOnHover={false}
-            alphaParticles={false}
-            disableRotation={false}
-          />
-        </div>
-        <Navbar />
-        {children}
+        <LennisWrapper>
+
+          <div className={`w-full h-screen fixed ${bgColorClass} -z-10 transition-colors duration-500`}>
+            <div className={`absolute top-0 left-1/2 max-w-[100vw] transform -translate-x-1/2 -translate-y-4/5 w-[2000px] h-[1500px] rounded-full blur-3xl bg-gradient-to-b ${gradient} to-transparent opacity-50`} />
+            <Particles
+              particleColors={['#ffffff', '#ffffff']}
+              particleCount={400}
+              particleSpread={30}
+              speed={0.04}
+              particleBaseSize={100}
+              moveParticlesOnHover={false}
+              alphaParticles={false}
+              disableRotation={false}
+            />
+          </div>
+          <Navbar />
+          {children}
+        </LennisWrapper>
       </body>
     </html>
   );
