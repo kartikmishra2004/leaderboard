@@ -16,7 +16,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     if (pathname === "/raingg") {
       setBgColorClass("bg-background");
       setGradient('from-blue-800 via-blue-800')
-    } else if (pathname === "/clashgg") {
+    } else if (pathname === "/clashgg" || pathname === "/clashgg-prev") {
       setBgColorClass("clashGG bg-background");
       setGradient('from-green-800 via-green-800')
     } else {

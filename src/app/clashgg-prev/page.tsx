@@ -17,12 +17,10 @@ type LeaderboardEntry = {
     wagered: number;
 };
 
-export default function ClashGG() {
+export default function ClashGGPrev() {
 
     const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-    const [timer, setTimer] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
-    const [timerLoading, setTimerLoading] = useState<boolean>(false);
     const mainRef = useRef(null);
     const leftChip = useRef(null);
     const rightChip = useRef(null);
@@ -32,26 +30,14 @@ export default function ClashGG() {
 
     const fetchLeaderboard = async () => {
         setLoading(true);
-        const result = await fetch(API_URLS.CLAHGG_API_URL);
+        const result = await fetch(API_URLS.CLAHGG_PREV_API_URL);
         const jsonResult = await result.json();
         setLeaderboard(jsonResult);
         setLoading(false);
     }
 
-    const fetchTimer = async () => {
-        setTimerLoading(true);
-        const result = await fetch(API_URLS.CLAHGG_TIMER_API_URL);
-        const jsonResult = await result.json();
-        setTimer(jsonResult.resetTime);
-        setTimerLoading(false);
-    }
-
     useEffect(() => {
         fetchLeaderboard();
-    }, []);
-
-    useEffect(() => {
-        fetchTimer();
     }, []);
 
     useGSAP(() => {
@@ -81,14 +67,13 @@ export default function ClashGG() {
     return (
         <section ref={mainRef} className="w-full clashGG pb-20 text-white">
             <div className="w-full flex flex-col py-10 items-center">
-                <LeaderboardNav />
                 <div className="flex justify-center mt-12 items-center w-full">
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                     <div className="space-y-1 flex flex-col items-center relative px-7">
                         <div className="absolute w-full h-full bg-blue-200 -z-10 rounded-full blur-2xl opacity-15"></div>
-                        <h1 className="text-4xl text-primary font-extrabold">CLASHGG</h1>
+                        <h1 className="text-4xl text-primary font-extrabold flex items-center gap-1">CLASHGG<sup className="text-sm font-normal">(PREV)</sup></h1>
                         <h1 className="text-sm text-background px-6 py-0.5 rounded-sm bg-gradient-to-r from-secondary mt-1 to-secondary/70 font-semibold tracking-wider">LEADERBOARD</h1>
-                        <Link href={'/clashgg-prev'} className="text-xs py-1 my-2 px-2 border rounded-lg text-primary/80 hover:text-secondary/80 transition-colors duration-500 ease-initial">SEE PREVIOUS WINNERS</Link>
+                        <Link href={'/clashgg'} className="text-xs py-1 my-2 px-2 border rounded-lg text-primary/80 hover:text-secondary/80 transition-colors duration-500 ease-initial">BACK TO HOME</Link>
                     </div>
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                 </div>
@@ -188,13 +173,6 @@ export default function ClashGG() {
                             </div>
                         </div>
                     }
-                </div>
-                <div ref={timerRef} className="w-full h-[50vh] pt-40 flex flex-col justify-center items-center">
-                    <h1 className="py-5 relative text-2xl text-primary font-semibold tracking-wide italic">
-                        RESET IN
-                        <span className="w-full h-full bg-secondary absolute top-0 left-0 -z-10 rounded-full blur-3xl opacity-50"></span>
-                    </h1>
-                    {timerLoading ? <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span> : <CountdownTimer resetTime={timer} />}
                 </div>
                 <div className="w-full h-screen py-32">
                     <div className="bg-gradient-to-br from-card via-[#0a1c05] to-card w-2/3 mx-auto backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden shadow-2xl">

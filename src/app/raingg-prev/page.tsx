@@ -17,12 +17,10 @@ type LeaderboardEntry = {
     wagered: number;
 };
 
-export default function ClashGG() {
+export default function RainGGPrev() {
 
     const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-    const [timer, setTimer] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
-    const [timerLoading, setTimerLoading] = useState<boolean>(false);
     const mainRef = useRef(null);
     const leftChip = useRef(null);
     const rightChip = useRef(null);
@@ -32,26 +30,14 @@ export default function ClashGG() {
 
     const fetchLeaderboard = async () => {
         setLoading(true);
-        const result = await fetch(API_URLS.CLAHGG_API_URL);
+        const result = await fetch(API_URLS.RAINGG_PREV_API_URL);
         const jsonResult = await result.json();
         setLeaderboard(jsonResult);
         setLoading(false);
     }
 
-    const fetchTimer = async () => {
-        setTimerLoading(true);
-        const result = await fetch(API_URLS.CLAHGG_TIMER_API_URL);
-        const jsonResult = await result.json();
-        setTimer(jsonResult.resetTime);
-        setTimerLoading(false);
-    }
-
     useEffect(() => {
         fetchLeaderboard();
-    }, []);
-
-    useEffect(() => {
-        fetchTimer();
     }, []);
 
     useGSAP(() => {
@@ -79,33 +65,32 @@ export default function ClashGG() {
     })
 
     return (
-        <section ref={mainRef} className="w-full clashGG pb-20 text-white">
+        <section ref={mainRef} className="w-full rainGG pb-20 text-white">
             <div className="w-full flex flex-col py-10 items-center">
-                <LeaderboardNav />
                 <div className="flex justify-center mt-12 items-center w-full">
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                     <div className="space-y-1 flex flex-col items-center relative px-7">
                         <div className="absolute w-full h-full bg-blue-200 -z-10 rounded-full blur-2xl opacity-15"></div>
-                        <h1 className="text-4xl text-primary font-extrabold">CLASHGG</h1>
+                        <h1 className="text-4xl text-primary font-extrabold flex items-center gap-1">RAINGG<sup className="text-sm font-normal">(PREV)</sup></h1>
                         <h1 className="text-sm text-background px-6 py-0.5 rounded-sm bg-gradient-to-r from-secondary mt-1 to-secondary/70 font-semibold tracking-wider">LEADERBOARD</h1>
-                        <Link href={'/clashgg-prev'} className="text-xs py-1 my-2 px-2 border rounded-lg text-primary/80 hover:text-secondary/80 transition-colors duration-500 ease-initial">SEE PREVIOUS WINNERS</Link>
+                        <Link href={'/raingg'} className="text-xs py-1 my-2 px-2 border rounded-lg text-primary/80 hover:text-secondary/80 transition-colors duration-500 ease-initial">BACK TO HOME</Link>
                     </div>
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                 </div>
                 <div className="p-10 w-full relative flex justify-center items-center h-[400px] mt-20">
                     <div className="">
                         <Image className="absolute -left-20 top-35 hue-rotate-200 blur-3xl opacity-40 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                        <Image ref={leftChip} className="absolute -left-20 top-35 hue-rotate-100 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                        <Image ref={leftChip} className="absolute -left-20 top-35 hue-rotate-200 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
                     </div>
                     <div className="">
                         <Image className="absolute -right-20 top-35 hue-rotate-200 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                        <Image ref={rightChip} className="absolute -right-20 top-35 hue-rotate-100 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                        <Image ref={rightChip} className="absolute -right-20 top-35 hue-rotate-200 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
                     </div>
                     {loading ? <div className="w-full h-screen flex justify-center items-center">
                         <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
                     </div> :
                         <div ref={cardsRef} className="w-full flex justify-center gap-14 perspective">
-                            <div className={`relative clashGG rounded-xl border-2 translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0a1c05] to-card rotate-3d-left hover:scale-105 group transition-all duration-500 ease-initial`}>
+                            <div className={`relative rounded-xl border-2 translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card rotate-3d-left hover:scale-105 group transition-all duration-500 ease-initial`}>
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                     #2
                                 </div>
@@ -133,7 +118,7 @@ export default function ClashGG() {
                             </div>
                             <div className="relative">
                                 <div className="absolute w-full h-full bg-secondary/20 -z-10 rounded-xl blur-3xl" />
-                                <div className="rounded-xl clashGG border-2 relative border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0a1c05] to-card hover:scale-105 transition-all duration-500 group ease-initial">
+                                <div className="rounded-xl border-2 relative border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card hover:scale-105 transition-all duration-500 group ease-initial">
                                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                         #1
                                     </div>
@@ -160,7 +145,7 @@ export default function ClashGG() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="rounded-xl clashGG border-2 translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0a1c05] to-card relative rotate-3d-right hover:scale-105 group transition-all duration-500 ease-initial">
+                            <div className="rounded-xl border-2 translate-y-12 border-border hover:border-secondary/80 bg-gradient-to-br from-card via-[#0b1730] to-card relative rotate-3d-right hover:scale-105 group transition-all duration-500 ease-initial">
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-card border-2 transition-all duration-500 ease-initial group-hover:border-secondary via-border to-card text-primary font-semibold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
                                     #3
                                 </div>
@@ -189,15 +174,8 @@ export default function ClashGG() {
                         </div>
                     }
                 </div>
-                <div ref={timerRef} className="w-full h-[50vh] pt-40 flex flex-col justify-center items-center">
-                    <h1 className="py-5 relative text-2xl text-primary font-semibold tracking-wide italic">
-                        RESET IN
-                        <span className="w-full h-full bg-secondary absolute top-0 left-0 -z-10 rounded-full blur-3xl opacity-50"></span>
-                    </h1>
-                    {timerLoading ? <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span> : <CountdownTimer resetTime={timer} />}
-                </div>
                 <div className="w-full h-screen py-32">
-                    <div className="bg-gradient-to-br from-card via-[#0a1c05] to-card w-2/3 mx-auto backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden shadow-2xl">
+                    <div className="bg-gradient-to-br from-card via-[#0b1730] to-card w-2/3 mx-auto backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden shadow-2xl">
                         <div className="bg-border px-6 py-4">
                             <div className="grid grid-cols-4 gap-4 text-sm font-semibold text-white uppercase tracking-wider">
                                 <div>Place</div>

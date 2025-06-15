@@ -7,6 +7,8 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
+import { API_URLS } from "@/utils/api";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +32,7 @@ export default function RainGG() {
 
     const fetchLeaderboard = async () => {
         setLoading(true);
-        const result = await fetch('https://spyder-webs.com:4012/leaderboard');
+        const result = await fetch(API_URLS.RAINGG_API_URL);
         const jsonResult = await result.json();
         setLeaderboard(jsonResult);
         setLoading(false);
@@ -38,7 +40,7 @@ export default function RainGG() {
 
     const fetchTimer = async () => {
         setTimerLoading(true);
-        const result = await fetch('https://spyder-webs.com:4012/resetTime');
+        const result = await fetch(API_URLS.RAINGG_TIMER_API_URL);
         const jsonResult = await result.json();
         setTimer(jsonResult.resetTime);
         setTimerLoading(false);
@@ -86,6 +88,7 @@ export default function RainGG() {
                         <div className="absolute w-full h-full bg-blue-200 -z-10 rounded-full blur-2xl opacity-15"></div>
                         <h1 className="text-4xl text-primary font-extrabold">RAINGG</h1>
                         <h1 className="text-sm text-background px-6 py-0.5 rounded-sm bg-gradient-to-r from-secondary mt-1 to-secondary/70 font-semibold tracking-wider">LEADERBOARD</h1>
+                        <Link href={'/raingg-prev'} className="text-xs py-1 my-2 px-2 border rounded-lg text-primary/80 hover:text-secondary/80 transition-colors duration-500 ease-initial">SEE PREVIOUS WINNERS</Link>
                     </div>
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                 </div>
