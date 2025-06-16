@@ -3,6 +3,7 @@ import { MessageCircle, Twitch, Play, Youtube, AlertTriangle } from "lucide-reac
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { SiDiscord, SiKick, SiTwitch, SiYoutube } from "react-icons/si";
+import { TransitionLink } from "./transition/transition-link";
 
 export default function Footer() {
     const pathname = usePathname();
@@ -12,30 +13,30 @@ export default function Footer() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                     {/* Left Section - Social Links */}
                     <div className="space-y-4">
-                        <Link className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.discord}>
+                        <TransitionLink className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.discord}>
                             <div className="flex items-center gap-3 text-white hover:text-secondary transition-colors">
                                 <SiDiscord />
                                 <span className="font-medium">Discord</span>
                             </div>
-                        </Link>
-                        <Link className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.twitch}>
+                        </TransitionLink>
+                        <TransitionLink className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.twitch}>
                             <div className="flex items-center gap-3 text-white hover:text-secondary transition-colors">
                                 <SiTwitch />
                                 <span className="font-medium">Twitch</span>
                             </div>
-                        </Link>
-                        <Link className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.kick}>
+                        </TransitionLink>
+                        <TransitionLink className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.kick}>
                             <div className="flex items-center gap-3 text-white hover:text-secondary transition-colors">
                                 <SiKick />
                                 <span className="font-medium">Kick</span>
                             </div>
-                        </Link>
-                        <Link className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.youtube}>
+                        </TransitionLink>
+                        <TransitionLink className="flex items-center gap-3 text-white hover:text-secondary transition-colors" href={SOCIAL_URLS.youtube}>
                             <div className="flex items-center gap-3 text-white hover:text-secondary transition-colors">
                                 <SiYoutube />
                                 <span className="font-medium">YouTube</span>
                             </div>
-                        </Link>
+                        </TransitionLink>
                     </div>
 
                     {/* Center Section - Made by */}
@@ -71,11 +72,11 @@ export default function Footer() {
             <div className="border-t border-secondary/30 px-6 py-4">
                 <div className="flex justify-center items-center">
                     <div className="text-center">
-                        <Link href={'/https://www.discord.com'}>
+                        <TransitionLink href={'/https://www.discord.com'}>
                             <p className="text-white text-sm">
                                 Made by <span className="text-red-500 font-semibold">SpyderWebs</span>
                             </p>
-                        </Link>
+                        </TransitionLink>
                     </div>
                 </div>
             </div>

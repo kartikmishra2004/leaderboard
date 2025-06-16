@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { createContext, useContext, useState, useTransition } from "react"
+import { createContext, useContext, useTransition } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 interface PageTransitionContextType {
@@ -14,60 +14,28 @@ const PageTransitionContext = createContext<PageTransitionContextType | null>(nu
 
 export function PageTransitionProvider({ children }: { children: React.ReactNode }) {
     const [isPending, startTransition] = useTransition()
-    const [isNavigating, setIsNavigating] = useState(false)
-    const [showBlackout, setShowBlackout] = useState(false)
 
     const handleStartTransition = (callback: () => void) => {
-        setIsNavigating(true)
-        setShowBlackout(true)
-
-        // Start blackout immediately
-        setTimeout(() => {
-            startTransition(() => {
-                callback()
-                // Keep blackout for longer, then fade out
-                setTimeout(() => {
-                    setShowBlackout(false)
-                    setTimeout(() => setIsNavigating(false), 400) // Extended delay
-                }, 200)
-            })
-        }, 150) // Delay before navigation starts
+        startTransition(callback)
     }
 
     return (
         <PageTransitionContext.Provider
             value={{
-                isPending: isPending || isNavigating,
+                isPending,
                 startTransition: handleStartTransition,
             }}
         >
-            {/* Blackout overlay */}
-            <AnimatePresence>
-                {showBlackout && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{
-                            duration: 0.5,
-                            ease: "easeInOut",
-                        }}
-                        className="fixed inset-0 bg-black z-50"
-                    />
-                )}
-            </AnimatePresence>
-
-            {/* Content with fade transition */}
+            {/* Content with slide-up transition only */}
             <AnimatePresence mode="wait">
                 <motion.div
-                    key={isPending || isNavigating ? "loading" : "content"}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: showBlackout ? 0 : 1 }}
-                    exit={{ opacity: 0 }}
+                    key={isPending ? "loading" : "content"}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
                     transition={{
-                        duration: 0.5,
-                        ease: "easeInOut",
-                        delay: showBlackout ? 0 : 0.2,
+                        duration: 0.3,
+                        ease: [0.22, 1, 0.36, 1], // Smooth cubic-bezier curve
                     }}
                 >
                     {children}

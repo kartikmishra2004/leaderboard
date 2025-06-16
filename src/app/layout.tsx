@@ -1,5 +1,4 @@
 'use client';
-
 import Particles from "@/components/Particles";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
@@ -10,6 +9,7 @@ import Footer from "./_components/Footer";
 import Image from "next/image";
 import FreeRewards from "./_components/FreeRewards";
 import { PageTransitionProvider } from "./_components/transition/page-transition-provider";
+import Videos from "./_components/Videos";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <LennisWrapper>
             <div className={`w-full h-screen fixed ${bgColorClass} -z-10 transition-colors duration-500`}>
               <div className={`absolute top-0 left-1/2 max-w-[100vw] transform -translate-x-1/2 -translate-y-4/5 w-[2000px] h-[1500px] rounded-full blur-3xl bg-gradient-to-b ${gradient} to-transparent opacity-50`} />
-              <Image alt="bg" className="absolute top-0 opacity-20" src={'/bg.jpg'} width={2000} height={2000}></Image>
+              <Image alt="bg" className="absolute top-0 opacity-20" src={pathname === '/raingg' ? '/bg.jpg' : '/' /* More images*/} width={2000} height={2000}></Image>
               <Particles
                 particleColors={['#c0dbff', '#c0dbff']}
                 particleCount={400}
@@ -51,6 +51,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </div>
             <Navbar />
             {children}
+            <Videos />
             <FreeRewards />
             <Footer />
           </LennisWrapper>

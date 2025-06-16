@@ -13,32 +13,20 @@ export function PageLoadingOverlay() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
-                    className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 flex items-center justify-center"
+                    transition={{ duration: 0.2 }}
+                    className="fixed inset-0 bg-white/60 backdrop-blur-sm z-40 flex items-center justify-center"
                 >
                     <motion.div
-                        initial={{ scale: 0.8, opacity: 0, y: 20 }}
+                        initial={{ scale: 0.9, opacity: 0, y: 10 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
-                        exit={{ scale: 0.8, opacity: 0, y: -20 }}
+                        exit={{ scale: 0.9, opacity: 0, y: -10 }}
                         transition={{
-                            duration: 0.6,
-                            delay: 0.3,
-                            ease: "easeOut",
+                            duration: 0.3,
+                            ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="flex flex-col items-center space-y-4 bg-white/90 backdrop-blur-md rounded-2xl p-8 shadow-2xl"
+                        className="flex items-center space-y-2 bg-white/90 backdrop-blur-md rounded-xl p-4 shadow-lg"
                     >
-                        <div className="relative">
-                            <div className="w-12 h-12 border-4 border-gray-200 rounded-full" />
-                            <div className="absolute top-0 left-0 w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-                        </div>
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                            className="text-gray-700 font-medium text-lg"
-                        >
-                            Transitioning...
-                        </motion.span>
+                        <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
                     </motion.div>
                 </motion.div>
             )}
