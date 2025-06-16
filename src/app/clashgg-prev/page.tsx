@@ -65,15 +65,70 @@ export default function ClashGGPrev() {
         })
     })
 
+     useGSAP(() => {
+        if (!loading) {
+            gsap.fromTo(
+                topLeftChip.current,
+                {
+                    x: -100,
+                    y: -100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    delay: 0.2,
+                }
+            );
+
+            gsap.fromTo(
+                topRightChip.current,
+                {
+                    x: 100,
+                    y: -100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    delay: 0.4,
+                }
+            );
+
+            gsap.fromTo(
+                [topLeftChip.current, topRightChip.current],
+                {
+                    y: 0
+                },
+                {
+                    y: 20,
+                    duration: 1.2,       // duration of one cycle (up or down)
+                    repeat: -1,          // infinite loop
+                    yoyo: true,          // reverse direction after each animation
+                    ease: "power1.inOut" // smooth easing
+                }
+            );
+        }
+    }, [loading])
+    
+    const topLeftChip = useRef(null)
+    const topRightChip = useRef(null)
+
     return (
         <section ref={mainRef} className="w-full clashGG pb-20 text-white relative">
             <div className="">
                 <Image className="absolute pointer-events-none -left-20 -top-25 -z-10 hue-rotate-100 blur-3xl opacity-40 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                <Image ref={leftChip} className="absolute -left-20 -top-25 -z-10 hue-rotate-100 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                <Image ref={topLeftChip} className="absolute -left-20 -top-25 -z-10 hue-rotate-100 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
             </div>
             <div className="">
                 <Image className="absolute pointer-events-none -right-20 -top-25 -z-10 hue-rotate-100 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                <Image ref={rightChip} className="absolute -right-20 -top-25 -z-10 hue-rotate-100 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                <Image ref={topRightChip} className="absolute -right-20 -top-25 -z-10 hue-rotate-100 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
             </div>
             <div className="w-full flex flex-col py-10 items-center">
                 <div className="flex justify-center mt-12 items-center w-full">

@@ -1,58 +1,58 @@
-'use client'
-import LeaderboardNav from "../_components/LeaderboardNav";
-import { useEffect, useRef, useState } from "react";
-import LeaderboardRow from "../_components/LeaderboardRow";
-import CountdownTimer from "../_components/CountdownTimer";
-import Image from "next/image";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { API_URLS } from "@/utils/api";
-import { TransitionLink } from "../_components/transition/transition-link";
+"use client"
+import LeaderboardNav from "../_components/LeaderboardNav"
+import { useEffect, useRef, useState } from "react"
+import LeaderboardRow from "../_components/LeaderboardRow"
+import CountdownTimer from "../_components/CountdownTimer"
+import Image from "next/image"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { API_URLS } from "@/utils/api"
+import { TransitionLink } from "../_components/transition/transition-link"
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 type LeaderboardEntry = {
-    username: string;
-    wagered: number;
-};
+    username: string
+    wagered: number
+}
 
 export default function RainGG() {
-
-    const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-    const [timer, setTimer] = useState<string>('');
-    const [loading, setLoading] = useState<boolean>(true);
-    const [timerLoading, setTimerLoading] = useState<boolean>(false);
-    const mainRef = useRef(null);
-    const leftChip = useRef(null);
-    const rightChip = useRef(null);
-    const cardsRef = useRef<HTMLDivElement>(null);
-    const timerRef = useRef<HTMLDivElement>(null);
-
+    const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
+    const [timer, setTimer] = useState<string>("")
+    const [loading, setLoading] = useState<boolean>(true)
+    const [timerLoading, setTimerLoading] = useState<boolean>(false)
+    const mainRef = useRef(null)
+    const leftChip = useRef(null)
+    const rightChip = useRef(null)
+    const cardsRef = useRef<HTMLDivElement>(null)
+    const timerRef = useRef<HTMLDivElement>(null)
+    const topLeftChip = useRef(null)
+    const topRightChip = useRef(null)
 
     const fetchLeaderboard = async () => {
-        setLoading(true);
-        const result = await fetch(API_URLS.RAINGG_API_URL);
-        const jsonResult = await result.json();
-        setLeaderboard(jsonResult);
-        setLoading(false);
+        setLoading(true)
+        const result = await fetch(API_URLS.RAINGG_API_URL)
+        const jsonResult = await result.json()
+        setLeaderboard(jsonResult)
+        setLoading(false)
     }
 
     const fetchTimer = async () => {
-        setTimerLoading(true);
-        const result = await fetch(API_URLS.RAINGG_TIMER_API_URL);
-        const jsonResult = await result.json();
-        setTimer(jsonResult.resetTime);
-        setTimerLoading(false);
+        setTimerLoading(true)
+        const result = await fetch(API_URLS.RAINGG_TIMER_API_URL)
+        const jsonResult = await result.json()
+        setTimer(jsonResult.resetTime)
+        setTimerLoading(false)
     }
 
     useEffect(() => {
-        fetchLeaderboard();
-    }, []);
+        fetchLeaderboard()
+    }, [])
 
     useEffect(() => {
-        fetchTimer();
-    }, []);
+        fetchTimer()
+    }, [])
 
     useGSAP(() => {
         if (!loading) {
@@ -60,10 +60,10 @@ export default function RainGG() {
                 y: 40,
                 opacity: 0,
                 duration: 1,
-                ease: "power4.out"
-            });
+                ease: "power4.out",
+            })
         }
-    }, [loading]);
+    }, [loading])
 
     useGSAP(() => {
         gsap.from(timerRef.current, {
@@ -73,20 +73,99 @@ export default function RainGG() {
             ease: "power4.out",
             scrollTrigger: {
                 trigger: mainRef.current,
-                start: '25%'
-            }
+                start: "25%",
+            },
         })
     })
 
+    useGSAP(() => {
+        if (!loading) {
+            gsap.fromTo(
+                topLeftChip.current,
+                {
+                    x: -100,
+                    y: -100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    delay: 0.2,
+                }
+            );
+
+            gsap.fromTo(
+                topRightChip.current,
+                {
+                    x: 100,
+                    y: -100,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: "power3.out",
+                    delay: 0.4,
+                }
+            );
+
+            gsap.fromTo(
+                [topLeftChip.current, topRightChip.current],
+                {
+                    y: 0
+                },
+                {
+                    y: 20,
+                    duration: 1.2,       // duration of one cycle (up or down)
+                    repeat: -1,          // infinite loop
+                    yoyo: true,          // reverse direction after each animation
+                    ease: "power1.inOut" // smooth easing
+                }
+            );
+        }
+    }, [loading])
+
     return (
         <section ref={mainRef} className="w-full pb-20 text-white relative">
-            <div className="">
-                <Image className="absolute -left-20 -top-25 -z-10 hue-rotate-200 blur-3xl opacity-40 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                <Image ref={leftChip} className="absolute -left-20 -top-25 -z-10 hue-rotate-200 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+            <div className=""
+                ref={topLeftChip}
+            >
+                <Image
+                    className="absolute -left-20 -top-25 -z-10 hue-rotate-200 blur-3xl opacity-40 -rotate-6 animate-float"
+                    alt="chip"
+                    src={"/9011.png"}
+                    width={400}
+                    height={400}
+                />
+                <Image
+                    className="absolute -left-20 -top-25 -z-10 hue-rotate-200 -rotate-6 animate-float"
+                    alt="chip"
+                    src={"/9011.png"}
+                    width={400}
+                    height={400}
+                />
             </div>
             <div className="">
-                <Image className="absolute -right-20 -top-25 -z-10 hue-rotate-200 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                <Image ref={rightChip} className="absolute -right-20 -top-25 -z-10 hue-rotate-200 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                <Image
+                    className="absolute -right-20 -top-25 -z-10 hue-rotate-200 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float"
+                    alt="chip"
+                    src={"/9011.png"}
+                    width={400}
+                    height={400}
+                />
+                <Image
+                    ref={topRightChip}
+                    className="absolute -right-20 -top-25 -z-10 hue-rotate-200 scale-x-[-1] rotate-6 animate-float"
+                    alt="chip"
+                    src={"/9011.png"}
+                    width={400}
+                    height={400}
+                />
             </div>
             <div className="w-full flex flex-col py-10 items-center">
                 <LeaderboardNav />
@@ -94,10 +173,14 @@ export default function RainGG() {
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                     <div className="space-y-1 flex flex-col items-center relative px-7">
                         <div className="absolute w-full h-full bg-blue-200 -z-10 rounded-full blur-2xl opacity-15"></div>
-                        <h1 className="text-4xl text-primary font-extrabold">RAIN<span className="text-secondary">GG</span></h1>
-                        <h1 className="text-sm text-background px-6 py-0.5 rounded-sm bg-gradient-to-r from-secondary mt-1 to-secondary/70 font-semibold tracking-wider">LEADERBOARD</h1>
+                        <h1 className="text-4xl text-primary font-extrabold">
+                            RAIN<span className="text-secondary">GG</span>
+                        </h1>
+                        <h1 className="text-sm text-background px-6 py-0.5 rounded-sm bg-gradient-to-r from-secondary mt-1 to-secondary/70 font-semibold tracking-wider">
+                            LEADERBOARD
+                        </h1>
                         <TransitionLink
-                            href={'/raingg-prev'}
+                            href={"/raingg-prev"}
                             className="
     relative text-xs z-15 py-2 my-3 px-4 
     bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 
@@ -116,25 +199,51 @@ export default function RainGG() {
     group
   "
                         >
-                            <span className="relative z-10 tracking-wide">
-                                SEE PREVIOUS WINNERS
-                            </span>
+                            <span className="relative z-10 tracking-wide">SEE PREVIOUS WINNERS</span>
                         </TransitionLink>
                     </div>
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                 </div>
                 <div className="p-10 w-full relative flex justify-center items-center h-[400px] mt-20">
                     <div className="">
-                        <Image className="absolute -left-20 top-35 hue-rotate-200 blur-3xl opacity-40 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                        <Image ref={leftChip} className="absolute -left-20 top-35 hue-rotate-200 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                        <Image
+                            className="absolute -left-20 top-35 hue-rotate-200 blur-3xl opacity-40 -rotate-6 animate-float"
+                            alt="chip"
+                            src={"/9011.png"}
+                            width={400}
+                            height={400}
+                        />
+                        <Image
+                            ref={leftChip}
+                            className="absolute -left-20 top-35 hue-rotate-200 -rotate-6 animate-float"
+                            alt="chip"
+                            src={"/9011.png"}
+                            width={400}
+                            height={400}
+                        />
                     </div>
                     <div className="">
-                        <Image className="absolute -right-20 top-35 hue-rotate-200 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                        <Image ref={rightChip} className="absolute -right-20 top-35 hue-rotate-200 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                        <Image
+                            className="absolute -right-20 top-35 hue-rotate-200 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float"
+                            alt="chip"
+                            src={"/9011.png"}
+                            width={400}
+                            height={400}
+                        />
+                        <Image
+                            ref={rightChip}
+                            className="absolute -right-20 top-35 hue-rotate-200 scale-x-[-1] rotate-6 animate-float"
+                            alt="chip"
+                            src={"/9011.png"}
+                            width={400}
+                            height={400}
+                        />
                     </div>
-                    {loading ? <div className="w-full h-screen flex justify-center items-center">
-                        <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
-                    </div> :
+                    {loading ? (
+                        <div className="w-full h-screen flex justify-center items-center">
+                            <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
+                        </div>
+                    ) : (
                         <div className="min-h-screen flex items-center justify-center p-8">
                             <div ref={cardsRef} className="w-full flex justify-center gap-14 perspective">
                                 {/* Silver - 2nd Place */}
@@ -174,8 +283,7 @@ export default function RainGG() {
                                     </div>
                                 </div>
 
-                                <div
-                                    className="relative">
+                                <div className="relative">
                                     <div className="absolute w-full h-full bg-blue-300/40 -z-10 rounded-xl blur-2xl" />
                                     <div className="rounded-xl border-2 relative border-amber-600/40 hover:border-amber-500/70 bg-gradient-to-br from-card via-[#0b1730] to-card hover:scale-110 transition-all duration-500 group ease-out shadow-2xl hover:shadow-amber-400/20 transform-gpu">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-amber-800 via-yellow-700 to-amber-800 border-2 border-amber-500/60 transition-all duration-500 ease-out group-hover:border-amber-300/80 group-hover:shadow-lg group-hover:shadow-amber-400/40 text-amber-100 font-bold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
@@ -252,14 +360,18 @@ export default function RainGG() {
                                 </div>
                             </div>
                         </div>
-                    }
+                    )}
                 </div>
                 <div ref={timerRef} className="w-full h-[50vh] pt-40 flex flex-col justify-center items-center">
                     <h1 className="py-5 relative text-2xl text-primary font-semibold tracking-wide italic">
                         RESET IN
                         <span className="w-full h-full bg-secondary absolute top-0 left-0 -z-10 rounded-full blur-3xl opacity-50"></span>
                     </h1>
-                    {timerLoading ? <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span> : <CountdownTimer resetTime={timer} />}
+                    {timerLoading ? (
+                        <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
+                    ) : (
+                        <CountdownTimer resetTime={timer} />
+                    )}
                 </div>
                 <div className="w-full py-32">
                     <div className="bg-gradient-to-br from-card via-[#0b1730] to-card w-2/3 mx-auto backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden shadow-2xl">
@@ -271,15 +383,17 @@ export default function RainGG() {
                                 <div className="text-right">Prize</div>
                             </div>
                         </div>
-                        {loading ?
+                        {loading ? (
                             <div className="w-full h-screen flex justify-center items-center">
                                 <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
                             </div>
-                            : <div className="divide-y divide-slate-700/50">
+                        ) : (
+                            <div className="divide-y divide-slate-700/50">
                                 {leaderboard.slice(3).map((entry, index) => (
                                     <LeaderboardRow key={index} entry={entry} index={index} />
                                 ))}
-                            </div>}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -116,22 +116,4 @@
   }
 }
 
-.animate-float {
-  animation: floatUpDown 3s ease-in-out infinite;
-}
 
-
-/* Slide in from top animation */
-@keyframes slideInFromTop {
-  0% {
-    transform: translateY(-120vh) rotate(-6deg);
-  }
-  100% {
-    transform: translateY(0) rotate(-6deg);
-  }
-}
-
-/* Classes for top slide animations */
-.slide-in-top {
-  animation: slideInFromTop 2s ease-out forwards;
-}
