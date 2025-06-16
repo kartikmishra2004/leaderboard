@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { API_URLS } from "@/utils/api";
+import { TransitionLink } from "../_components/transition/transition-link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,9 +95,33 @@ export default function ClashGG() {
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                     <div className="space-y-1 flex flex-col items-center relative px-7">
                         <div className="absolute w-full h-full bg-blue-200 -z-10 rounded-full blur-2xl opacity-15"></div>
-                        <h1 className="text-4xl text-primary font-extrabold">CLASHGG</h1>
+                        <h1 className="text-4xl text-primary font-extrabold">CLASH<span className="text-secondary">GG</span></h1>
                         <h1 className="text-sm text-background px-6 py-0.5 rounded-sm bg-gradient-to-r from-secondary mt-1 to-secondary/70 font-semibold tracking-wider">LEADERBOARD</h1>
-                        <Link href={'/clashgg-prev'} className="text-xs z-15 py-1 my-2 px-2 border rounded-lg text-primary/80 hover:text-secondary/80 transition-colors duration-500 ease-initial">SEE PREVIOUS WINNERS</Link>
+
+                        <TransitionLink
+                            href={'/clashgg-prev'}
+                            className="
+    relative text-xs z-15 py-2 my-2 px-4 
+    bg-gradient-to-r from-green-700 via-green-600 to-green-800 
+    text-white font- rounded-lg
+    border border-green-400/50
+    shadow-[0_0_20px_rgba(34,197,94,0.5)]
+    hover:shadow-[0_0_30px_rgba(34,197,94,0.8),0_0_60px_rgba(34,197,94,0.3)]
+    hover:scale-110 hover:from-green-600 hover:via-green-500 hover:to-green-700
+    active:scale-105
+    transition-all duration-300 ease-out
+    before:absolute before:inset-0 before:rounded-lg
+    before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
+    before:translate-x-[-100%] before:transition-transform before:duration-700
+    hover:before:translate-x-[100%]
+    overflow-hidden
+    group
+  "
+                        >
+                            <span className="relative z-10 tracking-wide">
+                                SEE PREVIOUS WINNERS
+                            </span>
+                        </TransitionLink>
                     </div>
                     <div className="w-[400px] h-[1px] bg-primary/10"></div>
                 </div>

@@ -7,6 +7,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LennisWrapper from "@/utils/LennisWrapper";
 import Footer from "./_components/Footer";
+import Image from "next/image";
+import FreeRewards from "./_components/FreeRewards";
+import { PageTransitionProvider } from "./_components/transition/page-transition-provider";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
@@ -30,25 +33,28 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="">
-        <LennisWrapper>
-
-          <div className={`w-full h-screen fixed ${bgColorClass} -z-10 transition-colors duration-500`}>
-            <div className={`absolute top-0 left-1/2 max-w-[100vw] transform -translate-x-1/2 -translate-y-4/5 w-[2000px] h-[1500px] rounded-full blur-3xl bg-gradient-to-b ${gradient} to-transparent opacity-50`} />
-            <Particles
-              particleColors={['#ffffff', '#ffffff']}
-              particleCount={400}
-              particleSpread={30}
-              speed={0.04}
-              particleBaseSize={100}
-              moveParticlesOnHover={false}
-              alphaParticles={false}
-              disableRotation={false}
-            />
-          </div>
-          <Navbar />
-          {children}
-          <Footer />
-        </LennisWrapper>
+        <PageTransitionProvider>
+          <LennisWrapper>
+            <div className={`w-full h-screen fixed ${bgColorClass} -z-10 transition-colors duration-500`}>
+              <div className={`absolute top-0 left-1/2 max-w-[100vw] transform -translate-x-1/2 -translate-y-4/5 w-[2000px] h-[1500px] rounded-full blur-3xl bg-gradient-to-b ${gradient} to-transparent opacity-50`} />
+              <Image alt="bg" className="absolute top-0 opacity-20" src={'/bg.jpg'} width={2000} height={2000}></Image>
+              <Particles
+                particleColors={['#c0dbff', '#c0dbff']}
+                particleCount={400}
+                particleSpread={30}
+                speed={0.2}
+                particleBaseSize={120}
+                moveParticlesOnHover={false}
+                alphaParticles={false}
+                disableRotation={false}
+              />
+            </div>
+            <Navbar />
+            {children}
+            <FreeRewards />
+            <Footer />
+          </LennisWrapper>
+        </PageTransitionProvider>
       </body>
     </html>
   );
