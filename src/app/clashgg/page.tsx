@@ -81,13 +81,13 @@ export default function ClashGG() {
 
     return (
         <section ref={mainRef} className="w-full clashGG pb-20 text-white relative">
-            <div className="slide-in-top">
+            <div className="">
                 <Image className="absolute -left-20 -top-25 -z-10 hue-rotate-100 blur-3xl opacity-40 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
                 <Image ref={leftChip} className="absolute -left-20 -top-25 -z-10 hue-rotate-100 -rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
             </div>
-            <div className="slide-in-top">
-                <Image className="absolute -right-20 top-10 -z-10 hue-rotate-100 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
-                <Image ref={rightChip} className="absolute -right-20 top-10 -z-10 hue-rotate-100 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+            <div className="">
+                <Image className="absolute -right-20 -top-25 -z-10 hue-rotate-100 blur-3xl opacity-40 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
+                <Image ref={rightChip} className="absolute -right-20 -top-25 -z-10 hue-rotate-100 scale-x-[-1] rotate-6 animate-float" alt="chip" src={'/9011.png'} width={400} height={400} />
             </div>
             <div className="w-full flex flex-col py-10 items-center">
                 <LeaderboardNav />

@@ -36,7 +36,7 @@ export default function FreeRewards() {
                 </div>
 
                 {/* Rewards Section */}
-                <div className="space-y-8">
+                <div className="flex justify-evenly">
                     {/* RAINGG Card */}
                     <div className="relative group">
                         <div className="absolute inset-0 bg-gradient-to-r from-secondary/20 to-primary/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>

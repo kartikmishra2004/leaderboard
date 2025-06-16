@@ -51,8 +51,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </div>
             <Navbar />
             {children}
-            <Videos />
-            <FreeRewards />
             <Footer />
           </LennisWrapper>
         </PageTransitionProvider>
