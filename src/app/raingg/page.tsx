@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { API_URLS } from "@/utils/api";
+import { Confetti, ConfettiRef } from "@/components/magicui/confetti";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +29,7 @@ export default function RainGG() {
     const rightChip = useRef(null);
     const cardsRef = useRef<HTMLDivElement>(null);
     const timerRef = useRef<HTMLDivElement>(null);
+    const confettiRef = useRef<ConfettiRef>(null);
 
 
     const fetchLeaderboard = async () => {
@@ -36,6 +38,11 @@ export default function RainGG() {
         const jsonResult = await result.json();
         setLeaderboard(jsonResult);
         setLoading(false);
+        setTimeout(() => {
+        if (confettiRef.current) {
+            confettiRef.current.fire({});
+        }
+    }, 100);
     }
 
     const fetchTimer = async () => {
@@ -113,6 +120,10 @@ export default function RainGG() {
                         <span className="rounded-full w-10 h-10 border-t-2 border-primary animate-spin"></span>
                     </div> :
                         <div className="min-h-screen flex items-center justify-center p-8">
+                            <Confetti
+                                ref={confettiRef}
+                                className="absolute left-0 -top-10 z-10 pointer-events-none w-full h-max"
+                            />
                             <div ref={cardsRef} className="w-full flex justify-center gap-14 perspective">
                                 {/* Silver - 2nd Place */}
                                 <div className="relative rounded-xl border-2 translate-y-12 border-slate-600/50 hover:border-slate-400/80 bg-gradient-to-br from-card via-[#0b1730] to-card rotate-3d-right hover:scale-110 group transition-all duration-500 ease-out shadow-2xl hover:shadow-slate-400/20 transform-gpu">
@@ -151,8 +162,11 @@ export default function RainGG() {
                                     </div>
                                 </div>
 
-                                {/* Gold - 1st Place */}
-                                <div className="relative">
+                                <div
+                                    onMouseEnter={() => {
+                                        confettiRef.current?.fire({});
+                                    }}
+                                    className="relative">
                                     <div className="absolute w-full h-full bg-amber-300/10 -z-10 rounded-xl blur-3xl" />
                                     <div className="rounded-xl border-2 relative border-amber-600/40 hover:border-amber-500/70 bg-gradient-to-br from-card via-[#0b1730] to-card hover:scale-110 transition-all duration-500 group ease-out shadow-2xl hover:shadow-amber-400/20 transform-gpu">
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-amber-800 via-yellow-700 to-amber-800 border-2 border-amber-500/60 transition-all duration-500 ease-out group-hover:border-amber-300/80 group-hover:shadow-lg group-hover:shadow-amber-400/40 text-amber-100 font-bold w-12 h-12 flex items-center text-sm justify-center rounded-full shadow-md z-10">
